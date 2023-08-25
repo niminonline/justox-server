@@ -1,0 +1,28 @@
+{
+  "name": "justox-server",
+  "version": "1.0.0",
+  "description": "A stock monitoring app made with Angular and Nodejs",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "justox"
+  ],
+  "author": "Nimin M Salim",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.17",
+    "@types/mongodb": "^4.0.7",
+    "@types/mongoose": "^5.11.97",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^5.8.1",
+    "mongoose": "^7.4.4",
+    "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
