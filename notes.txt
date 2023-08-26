@@ -1,4 +1,7 @@
 npm init
-npm install express @types/express typescript nodemon
 npx tsc --init
+npm install express cors mongodb mongoose cookie-parser jsonwebtoken multer moment
+npm install --save-dev @types/express @types/mongodb @types/mongoose @types/node nodemon ts-node typescript
+
+
 
