@@ -15,7 +15,7 @@ export const generateUserToken = (existingUser: UserType): string | null => {
   }
 };
 
-export const generateadminToken = (adminData: AdminType): string | null => {
+export const generateAdminToken = (adminData: AdminType): string | null => {
   try {
     const { email } = adminData;
     const jwtSecretKey = "jvvt@dW!n53Cr#7k3Y";
