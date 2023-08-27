@@ -5,9 +5,9 @@ import Jwt from "jsonwebtoken";
 
 export const generateUserToken = (existingUser: UserType): string | null => {
   try {
-    const { _id, username, email, mobile } = existingUser;
+    const {_id,username,email,mobile } = existingUser;
     const jwtSecretKey = "jvvt53Cr#7k3Y";
-    const token = Jwt.sign({ _id, username, email, mobile }, jwtSecretKey);
+    const token = Jwt.sign({_id,username,email,mobile}, jwtSecretKey);
     return token;
   } catch (err) {
     console.log(err);
@@ -37,7 +37,7 @@ export const verifyToken = async (
     const token = authHeader && authHeader.split(" ")[1];
 
     if (!token) {
-      return res.status(401).json({ error: "No token provided" });
+      return res.status(401).json({ message: "No tokens found" });
     }
 
     Jwt.verify(token, "jvvt53Cr#7k3Y");
@@ -45,6 +45,6 @@ export const verifyToken = async (
     next();
   } catch (error) {
     console.log(error);
-    res.status(401).json({ error: "Invalid token" });
+    res.status(401).json({ message: "Invalid token" });
   }
 };

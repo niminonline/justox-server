@@ -32,9 +32,9 @@ const userSchema:Schema = new Schema({
     },
     date:{
         type:Date,
-        required:true
-    }
-})
+        default: Date.now
+      }
+},{timestamps:true})
 
 
 export default mongoose.model<UserType>('User',userSchema)

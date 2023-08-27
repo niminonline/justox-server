@@ -1,5 +1,5 @@
 import { qDeleteUser } from "../../repositories/adminRepository";
-const deleteUserData = async (id: string) => {
+const deleteUserData = async (id: string):Promise<object|undefined> => {
   try {
     const deleteUser = await qDeleteUser(id);
     if (deleteUser) {

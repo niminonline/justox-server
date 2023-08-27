@@ -2,7 +2,7 @@ import {
   qFindUserByEmail,
   qFindUserByMobile,
   qUpdateUser,
-} from "../../repositories/adminRepository";
+} from "../../repositories/userRepository";
 
 const updateUserData = async (
   _id: string,
@@ -10,7 +10,7 @@ const updateUserData = async (
   email: string,
   mobile: string,
   image: any
-) : Promise<object | undefined> => {
+) => {
   try{
     const isEmailExists = await qFindUserByEmail(email);
   if (isEmailExists) {

@@ -14,10 +14,10 @@ export const qUserData = async (id: string): Promise<UserType | null> => {
   return await User.findById(_id);
 };
 
-export const qEmailExists=async (email:string):Promise<UserType | null>=>{
+export const qFindUserByEmail=async (email:string):Promise<UserType | null>=>{
     return await User.findOne({email});
 }
-export const qMobileExists=async (mobile:string):Promise<UserType | null>=>{
+export const qFindUserByMobile=async (mobile:string):Promise<UserType | null>=>{
     return await User.findOne({mobile});
 }
 export const qUpdateUser=async(_id:string,username:string,email:string,mobile:string,image:any):Promise<UserType | null>=>{

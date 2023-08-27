@@ -12,7 +12,7 @@ export const adminLogin = async (
   try {
     const { email, password } = req.body;
 
-    const adminData: object = await getAdminToken(email, password);
+    const adminData = await getAdminToken(email, password);
     res.json(adminData);
   } catch (error) {
     console.log(error);
