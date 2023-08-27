@@ -7,7 +7,7 @@ export const getAdminToken = async (email: string, password: string): Promise<ob
   const adminData = await qAdminData(email);
   if (adminData?.password === password) {
     const adminToken = generateAdminToken(adminData);
-    return { adminData, adminToken,status:"OK" };
+    return { adminData, adminToken,message: "Admin verified successfully",status:"OK" };
   } else {
     return { message: "Invalid credentials",status:"FAILED" };
   }

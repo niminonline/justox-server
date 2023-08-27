@@ -10,6 +10,7 @@ export const userSignup = async (
 ): Promise<void> => {
   try {
     const { username, email, mobile, password } = req.body;
+    console.log("file from ussr controller",req.file)
     const image = req.file?.filename;
     const response = await createUser(username, email, mobile, password, image);
     res.json(response);
@@ -20,6 +21,7 @@ export const userSignup = async (
 
 export const userLogin = async (req: Request, res: Response): Promise<void> => {
   try {
+    // console.log("login-",req.body)
     const { email, password } = req.body;
     const response = await verifyUserLogin(email, password);
     res.json(response);

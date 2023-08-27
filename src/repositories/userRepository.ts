@@ -8,6 +8,7 @@ export const qCreateUser = async (
   image: any
 ): Promise<UserType | undefined> => {
   try {
+    console.log("image from user createq:",image);
     const createUser = await User.create({
       username,
       email,

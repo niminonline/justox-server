@@ -5,10 +5,10 @@ import {qUsersData} from '../../repositories/adminRepository'
 
         const usersData= await qUsersData();
         if(usersData){
-            return ({usersData,status:"OK"});
+            return ({usersData,message:"Users' data fetched successfully",status:"OK"});
         }
         else{
-            return ({message:"Users data fetching failed",status:"FAILED"});
+            return ({message:"Users' data fetching failed",status:"FAILED"});
         }
        
     }

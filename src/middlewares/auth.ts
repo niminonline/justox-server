@@ -6,7 +6,12 @@ import Jwt from "jsonwebtoken";
 export const generateUserToken = (existingUser: UserType): string | null => {
   try {
     const {_id,username,email,mobile } = existingUser;
-    const jwtSecretKey = "jvvt53Cr#7k3Y";
+    // const jwtSecretKey = "jvvt53Cr#7k3Y";
+    const jwtSecretKey = process.env.jwtSecretKey;
+    if (!jwtSecretKey) {
+      console.error('jwtSecretKey is missing');
+      process.exit(1); 
+    }
     const token = Jwt.sign({_id,username,email,mobile}, jwtSecretKey);
     return token;
   } catch (err) {
@@ -18,7 +23,11 @@ export const generateUserToken = (existingUser: UserType): string | null => {
 export const generateAdminToken = (adminData: AdminType): string | null => {
   try {
     const { email } = adminData;
-    const jwtSecretKey = "jvvt@dW!n53Cr#7k3Y";
+    const jwtSecretKey = process.env.jwtSecretKey;
+    if (!jwtSecretKey) {
+      console.error('jwtSecretKey is missing');
+      process.exit(1); 
+    }
     const token = Jwt.sign({ email }, jwtSecretKey);
     return token;
   } catch (err) {
@@ -39,8 +48,11 @@ export const verifyToken = async (
     if (!token) {
       return res.status(401).json({ message: "No tokens found" });
     }
-
-    Jwt.verify(token, "jvvt53Cr#7k3Y");
+    if (!process.env.jwtSecretKey) {
+      console.error('jwtSecretKey is missing');
+      process.exit(1); 
+    }
+    Jwt.verify(token, process.env.jwtSecretKey);
 
     next();
   } catch (error) {

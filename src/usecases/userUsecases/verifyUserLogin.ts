@@ -1,14 +1,21 @@
 import { matchPassword } from "../../services/bcrypt";
 import { qFindUserByEmail } from "../../repositories/userRepository";
 import { generateUserToken } from "../../middlewares/auth";
+import { ApiResponse } from "../../types/interface";
 
-const verifyUserLogin = async (email: string, password: string) => {
+const verifyUserLogin = async (email: string, password: string) :Promise<ApiResponse>=> {
   const userData = await qFindUserByEmail(email);
   if (userData) {
     const validatePassword = await matchPassword(password, userData.password);
     if (validatePassword) {
       const token = generateUserToken(userData);
-      return { userData, token, status: "OK" };
+      if(token){
+
+        return { userData, token,message: "User verified successfully", status: "OK" };
+      }
+      else{
+        return { message: "Token generation failed", status: "FAILED" };
+      }
     } else {
       return { message: "Invalid credentials", status: "FAILED" };
     }
