@@ -20,3 +20,16 @@ export interface ApiResponse{
     userData?:UserType,
     token?:string
   }
+
+  export interface AdminLoginResponse{
+
+    adminData: {
+      _id: string,
+      email: string,
+      password: string
+  },
+  adminToken:string,
+  message: string,
+  status: string
+}
+  
