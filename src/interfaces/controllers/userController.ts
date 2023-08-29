@@ -35,16 +35,16 @@ export const getProfile = async (
   res: Response
 ): Promise<void> => {
   try {
-    const email = req.query.email as string;
-    if (email) {
-      const userData = await getuserData(email);
+    const _id = req.query._id as string;
+    if (_id) {
+      const userData = await getuserData(_id);
       if (userData) {
-        res.status(200).json(userData);
+        res.status(200).json({ message: "User verified successfully", status:"OK" ,userData});
       } else {
-        res.status(400).json({ message: "User not found" });
+        res.status(400).json({ message: "User not found", status:"FAILED" });
       }
     } else {
-      res.status(400).json({ message: "Invalid" });
+      res.status(400).json({ message: "Invalid" ,status:"FAILED" });
     }
   } catch (err) {
     console.log(err);
@@ -57,7 +57,7 @@ export const updateProfile = async (
 ): Promise<void> => {
   try {
     const { _id, username, email, mobile } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     const image = req.file?.filename;
     const response = await updateUserData(_id, username, email, mobile, image);
     res.json(response);

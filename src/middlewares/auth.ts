@@ -5,14 +5,14 @@ import Jwt from "jsonwebtoken";
 
 export const generateUserToken = (existingUser: UserType): string | null => {
   try {
-    const {_id,username,email,mobile } = existingUser;
+    const { _id, username, email, mobile } = existingUser;
     // const jwtSecretKey = "jvvt53Cr#7k3Y";
     const jwtSecretKey = process.env.jwtSecretKey;
     if (!jwtSecretKey) {
-      console.error('jwtSecretKey is missing');
-      process.exit(1); 
+      console.error("jwtSecretKey is missing");
+      process.exit(1);
     }
-    const token = Jwt.sign({_id,username,email,mobile}, jwtSecretKey);
+    const token = Jwt.sign({ _id, username, email, mobile }, jwtSecretKey);
     return token;
   } catch (err) {
     console.log(err);
@@ -25,8 +25,8 @@ export const generateAdminToken = (adminData: AdminType): string | null => {
     const { email } = adminData;
     const jwtSecretKey = process.env.jwtSecretKey;
     if (!jwtSecretKey) {
-      console.error('jwtSecretKey is missing');
-      process.exit(1); 
+      console.error("jwtSecretKey is missing");
+      process.exit(1);
     }
     const token = Jwt.sign({ email }, jwtSecretKey);
     return token;
@@ -44,19 +44,24 @@ export const verifyToken = async (
   try {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(" ")[1];
+    console.log("Auth---", token);
 
     if (!token) {
-      return res.status(401).json({ message: "No tokens found" });
+      return res
+        .status(401)
+        .json({ status: "FAILED", message: "No tokens found" });
     }
     if (!process.env.jwtSecretKey) {
-      console.error('jwtSecretKey is missing');
-      process.exit(1); 
+      console.error("jwtSecretKey is missing");
+      return res
+        .status(401)
+        .json({ status: "FAILED", message: "Token verification failed" });
     }
     Jwt.verify(token, process.env.jwtSecretKey);
 
     next();
   } catch (error) {
     console.log(error);
-    res.status(401).json({ message: "Invalid token" });
+    res.status(401).json({ status: "FAILED", message: "Invalid token" });
   }
 };

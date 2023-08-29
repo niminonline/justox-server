@@ -11,20 +11,35 @@ dotenv.config();
 const port:number= parseInt(process.env.PORT || '5001');
 
 // app.use(cors());
-const allowedOrigins = ['http://localhost:4200'];
-app.use(cors({
-  origin: function (origin, callback) {
+const allowedOrigins = ['http://localhost:4200', 'localhost:4200'];
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// }));
+// const corsOptions={
+//     origin:'',
+//     credentials: true,
+//     methods:'GET,POST,PUT,PATCH,DELETE'
+// }
+
+const corsOptions = {
+  origin: function (origin:any, callback:any) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  }
-}));
-const corsOptions={
-    origin:'',
-    methods:'GET,POST',
-}
+  },
+  credentials: true, // Allow credentials (e.g., cookies, authentication headers)
+  methods: 'GET,POST,PUT,PATCH,DELETE', // Allow specified HTTP methods
+};
+
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

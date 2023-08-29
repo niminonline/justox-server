@@ -1,9 +1,9 @@
 import { UserType } from "../../entities/userModel";
-import { qFindUserByEmail } from "../../repositories/userRepository";
+import { qFindUserById} from "../../repositories/userRepository";
 
-const getuserData = async (email:string):Promise<UserType|undefined|null> => {
+const getuserData = async (_id:string):Promise<UserType|undefined|null> => {
   try {
-    const userData = await qFindUserByEmail(email);
+    const userData = await qFindUserById(_id);
     return userData;
   } catch (err) {
     console.log(err);

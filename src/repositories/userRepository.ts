@@ -22,6 +22,13 @@ export const qCreateUser = async (
   }
 };
 
+export const qFindUserById = async (
+  id: string
+): Promise<UserType | null> => {
+  const userData = await User.findById(id);
+  return userData;
+};
+
 export const qFindUserByEmail = async (
   email: string
 ): Promise<UserType | null> => {
