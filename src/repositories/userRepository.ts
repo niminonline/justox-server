@@ -19,7 +19,7 @@ export const qCreateUser = async (
     return createUser;
   } catch (err) {
     console.log(err);
-  }
+  }console
 };
 
 export const qFindUserById = async (

@@ -44,7 +44,7 @@ export const verifyToken = async (
   try {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(" ")[1];
-    console.log("Auth---", token);
+    // console.log("Auth---", token);
 
     if (!token) {
       return res
