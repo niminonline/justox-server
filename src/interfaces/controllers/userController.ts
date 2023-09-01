@@ -10,7 +10,6 @@ export const userSignup = async (
 ): Promise<void> => {
   try {
     const { username, email, mobile, password } = req.body;
-    console.log("file from ussr controller",req.file)
     const image = req.file?.filename;
     const response = await createUser(username, email, mobile, password, image);
     res.json(response);

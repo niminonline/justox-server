@@ -9,7 +9,7 @@ const updateUserData = async (
   username: string,
   email: string,
   mobile: string,
-  image: any
+  image: string|undefined
 ) : Promise<object | undefined> => {
   try{
     const isEmailExists = await qFindUserByEmail(email);

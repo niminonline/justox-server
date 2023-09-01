@@ -21,6 +21,7 @@ export const qFindUserByMobile=async (mobile:string):Promise<UserType | null>=>{
     return await User.findOne({mobile});
 }
 export const qUpdateUser=async(_id:string,username:string,email:string,mobile:string,image:any):Promise<UserType | null>=>{
+  
     const userData= User.findByIdAndUpdate({_id},{
         $set:{username:username,email:email,mobile:mobile,image:image}
     });

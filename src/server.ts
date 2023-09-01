@@ -4,28 +4,15 @@ import adminRoute from './interfaces/routes/adminRoute';
 import userRoute from './interfaces/routes/userRoute';
 import connectDB from './config/mongodb'
 import cors from 'cors';
+import path from 'path'; 
 
 
 const app= express();
 dotenv.config();
 const port:number= parseInt(process.env.PORT || '5001');
 
-// app.use(cors());
 const allowedOrigins = ['http://localhost:4200', 'localhost:4200'];
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   }
-// }));
-// const corsOptions={
-//     origin:'',
-//     credentials: true,
-//     methods:'GET,POST,PUT,PATCH,DELETE'
-// }
+
 
 const corsOptions = {
   origin: function (origin:any, callback:any) {
@@ -35,8 +22,8 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true, // Allow credentials (e.g., cookies, authentication headers)
-  methods: 'GET,POST,PUT,PATCH,DELETE', // Allow specified HTTP methods
+  credentials: true, 
+  methods: 'GET, POST, PUT, PATCH, DELETE', 
 };
 
 
@@ -45,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/",userRoute);
 app.use("/admin",adminRoute);
-app.use('/public',express.static("../public"));
+app.use('/public', express.static(path.join(__dirname, '../public')));
 connectDB();
 
 

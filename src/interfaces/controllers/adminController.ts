@@ -48,6 +48,7 @@ export const updateUser = async (
   try {
     const { _id, username, email, mobile } = req.body;
     const image = req.file?.filename;
+    console.log("image from admincontroller-",image)
     const response = await updateUserData(_id, username, email, mobile, image);
     res.json(response);
   } catch (err) {

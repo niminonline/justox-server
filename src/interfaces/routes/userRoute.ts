@@ -7,6 +7,7 @@ import { verifyToken } from "../../middlewares/auth";
 const userRoute = Router();
 
 userRoute.get("/",(req,res)=>{
+    
     res.json({status:"Success"})
 })
 userRoute.post('/signup',upload.single('image'), userSignup);
