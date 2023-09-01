@@ -65,3 +65,8 @@ export const verifyToken = async (
     res.status(401).json({ status: "FAILED", message: "Invalid token" });
   }
 };
+
+
+const verifyAdminToken = (req:Request,res:Response){
+  
+}
