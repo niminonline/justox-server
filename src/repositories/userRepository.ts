@@ -47,3 +47,9 @@ export const qUpdateUser=async(_id:string,username:string,email:string,mobile:st
   });
   return userData;
 }
+export const qUpdateImage=async(_id:string,image:any):Promise<UserType | null>=>{
+  const userData= User.findByIdAndUpdate({_id},{
+      $set:{image:image}
+  });
+  return userData;
+}

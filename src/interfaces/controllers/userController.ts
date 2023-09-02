@@ -3,6 +3,7 @@ import createUser from "../../usecases/userUsecases/createUser";
 import verifyUserLogin from "../../usecases/userUsecases/verifyUserLogin";
 import getuserData from "../../usecases/userUsecases/getUserData";
 import updateUserData from "../../usecases/userUsecases/updateUserData";
+import updateUserImage from "../../usecases/userUsecases/updateUserImage";
 
 export const userSignup = async (
   req: Request,
@@ -15,6 +16,7 @@ export const userSignup = async (
     res.json(response);
   } catch (err) {
     console.log(err);
+    
   }
 };
 
@@ -47,6 +49,8 @@ export const getProfile = async (
     }
   } catch (err) {
     console.log(err);
+    res.json({ message: "Something went wrong", status: "FAILED" });
+
   }
 };
 
@@ -59,6 +63,21 @@ export const updateProfile = async (
     // console.log(req.body);
     const image = req.file?.filename;
     const response = await updateUserData(_id, username, email, mobile, image);
+    res.json(response);
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const updateImage = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    console.log(req.body);
+    console.log(req.file);
+    const {_id}= req.body;
+    const image = req.file?.filename;
+    const response = await updateUserImage(_id,image);
     res.json(response);
   } catch (err) {
     console.log(err);
