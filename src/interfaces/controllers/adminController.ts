@@ -5,6 +5,13 @@ import getUserData from "../../usecases/adminUsecases/getUserData";
 import updateUserData from "../../usecases/adminUsecases/updateUserData";
 import deleteUserData from "../../usecases/adminUsecases/deleteUserData";
 
+export const sessionSuccess= (req:Request,res:Response)=>{
+  res.json({status:"OK",message:"Verification successfull"})
+}
+
+
+
+
 export const adminLogin = async (
   req: Request,
   res: Response
