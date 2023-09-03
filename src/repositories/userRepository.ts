@@ -8,7 +8,7 @@ export const qCreateUser = async (
   image: any
 ): Promise<UserType | undefined> => {
   try {
-    console.log("image from user createq:",image);
+    console.log("image from user createq:", image);
     const createUser = await User.create({
       username,
       email,
@@ -19,12 +19,11 @@ export const qCreateUser = async (
     return createUser;
   } catch (err) {
     console.log(err);
-  }console
+  }
+  
 };
 
-export const qFindUserById = async (
-  id: string
-): Promise<UserType | null> => {
+export const qFindUserById = async (id: string): Promise<UserType | null> => {
   const userData = await User.findById(id);
   return userData;
 };
@@ -32,7 +31,7 @@ export const qFindUserById = async (
 export const qFindUserByEmail = async (
   email: string
 ): Promise<UserType | null> => {
-  const userData = await User.findOne({ email:email });
+  const userData = await User.findOne({ email: email });
   return userData;
 };
 export const qFindUserByMobile = async (
@@ -41,15 +40,30 @@ export const qFindUserByMobile = async (
   return await User.findOne({ mobile });
 };
 
-export const qUpdateUser=async(_id:string,username:string,email:string,mobile:string,image:any):Promise<UserType | null>=>{
-  const userData= User.findByIdAndUpdate({_id},{
-      $set:{username:username,email:email,mobile:mobile,image:image}
-  });
+export const qUpdateUser = async (
+  _id: string,
+  username: string,
+  email: string,
+  mobile: string,
+  image: any
+): Promise<UserType | null> => {
+  const userData = User.findByIdAndUpdate(
+    { _id },
+    {
+      $set: { username: username, email: email, mobile: mobile, image: image },
+    }
+  );
   return userData;
-}
-export const qUpdateImage=async(_id:string,image:any):Promise<UserType | null>=>{
-  const userData= User.findByIdAndUpdate({_id},{
-      $set:{image:image}
-  });
+};
+export const qUpdateImage = async (
+  _id: string,
+  image: any
+): Promise<UserType | null> => {
+  const userData = User.findByIdAndUpdate(
+    { _id },
+    {
+      $set: { image: image },
+    }
+  );
   return userData;
-}
+};

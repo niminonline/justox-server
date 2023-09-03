@@ -16,7 +16,6 @@ export const userSignup = async (
     res.json(response);
   } catch (err) {
     console.log(err);
-    
   }
 };
 
@@ -40,17 +39,22 @@ export const getProfile = async (
     if (_id) {
       const userData = await getuserData(_id);
       if (userData) {
-        res.status(200).json({ message: "User verified successfully", status:"OK" ,userData});
+        res
+          .status(200)
+          .json({
+            message: "User verified successfully",
+            status: "OK",
+            userData,
+          });
       } else {
-        res.status(400).json({ message: "User not found", status:"FAILED" });
+        res.status(400).json({ message: "User not found", status: "FAILED" });
       }
     } else {
-      res.status(400).json({ message: "Invalid" ,status:"FAILED" });
+      res.status(400).json({ message: "Invalid", status: "FAILED" });
     }
   } catch (err) {
     console.log(err);
     res.json({ message: "Something went wrong", status: "FAILED" });
-
   }
 };
 
@@ -75,9 +79,9 @@ export const updateImage = async (
   try {
     console.log(req.body);
     console.log(req.file);
-    const {_id}= req.body;
+    const { _id } = req.body;
     const image = req.file?.filename;
-    const response = await updateUserImage(_id,image);
+    const response = await updateUserImage(_id, image);
     res.json(response);
   } catch (err) {
     console.log(err);
