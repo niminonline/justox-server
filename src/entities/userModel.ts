@@ -5,7 +5,7 @@ export interface UserType extends Document{
     email:string
     mobile:string
     password:string
-    image:any
+    image:string
     date:string
 }
 
