@@ -8,7 +8,7 @@ const deleteUserData = async (id: string):Promise<object|undefined> => {
       return { message: "User deleted failed", status: "FAILED" };
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 export default deleteUserData;

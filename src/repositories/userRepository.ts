@@ -8,7 +8,6 @@ export const qCreateUser = async (
   image: any
 ): Promise<UserType | undefined> => {
   try {
-    console.log("image from user createq:", image);
     const createUser = await User.create({
       username,
       email,
@@ -18,7 +17,7 @@ export const qCreateUser = async (
     });
     return createUser;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
   
 };

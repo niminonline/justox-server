@@ -6,7 +6,7 @@ const getuserData = async (_id:string):Promise<UserType|undefined|null> => {
     const userData = await qFindUserById(_id);
     return userData;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 

@@ -9,10 +9,10 @@ const connectDB = async ():Promise<void> => {
      await  mongoose.connect(process.env.mongo_url);
       console.log("database connected successfully");
     } else {
-      console.log("Error in mongodb connection url");
+      console.error("Error in mongodb connection url");
     }
   } catch (error) {
-    console.log("Error while connecting db", error);
+    console.error("Error while connecting db", error);
   }
 };
 

@@ -13,6 +13,6 @@ export const getAdminToken = async (email: string, password: string): Promise<ob
   }
  }
  catch(err){
-  console.log(err);
+  console.error(err);
  }
 };

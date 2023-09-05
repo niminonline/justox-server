@@ -15,7 +15,7 @@ export const userSignup = async (
     const response = await createUser(username, email, mobile, password, image);
     res.json(response);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -26,7 +26,7 @@ export const userLogin = async (req: Request, res: Response): Promise<void> => {
     const response = await verifyUserLogin(email, password);
     res.json(response);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -53,7 +53,7 @@ export const getProfile = async (
       res.status(400).json({ message: "Invalid", status: "FAILED" });
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.json({ message: "Something went wrong", status: "FAILED" });
   }
 };
@@ -69,7 +69,7 @@ export const updateProfile = async (
     const response = await updateUserData(_id, username, email, mobile, image);
     res.json(response);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 export const updateImage = async (
@@ -77,13 +77,13 @@ export const updateImage = async (
   res: Response
 ): Promise<void> => {
   try {
-    console.log(req.body);
-    console.log(req.file);
+    // console.log(req.body);
+    // console.log(req.file);
     const { _id } = req.body;
     const image = req.file?.filename;
     const response = await updateUserImage(_id, image);
     res.json(response);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };

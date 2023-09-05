@@ -15,7 +15,7 @@ const updateUserData = async (
     const isEmailExists = await qFindUserByEmail(email);
    
   if (isEmailExists&& (isEmailExists._id.toString()!==_id.toString())) {
-    console.log(isEmailExists._id+"-"+_id)
+    // console.log(isEmailExists._id+"-"+_id)
     return { message: "Email already exists", status: "FAILED" };
   }
   const isMobileExists = await qFindUserByMobile(mobile);
@@ -30,7 +30,7 @@ const updateUserData = async (
   }
   }
   catch(err){
-    console.log(err);
+    console.error(err);
   }
 };
 export default updateUserData;

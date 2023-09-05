@@ -35,7 +35,7 @@ const createUser = async (
       return { message: "User creation failed", status: "FAILED" };
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 export default createUser;

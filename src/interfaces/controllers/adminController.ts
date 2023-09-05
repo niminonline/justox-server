@@ -22,7 +22,7 @@ export const adminLogin = async (
     const adminData = await getAdminToken(email, password);
     res.json(adminData);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -31,7 +31,7 @@ export const loadUsers = async (req: Request, res: Response): Promise<void> => {
     const usersData = await getUsersData();
     res.json(usersData);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -44,7 +44,7 @@ export const getEditUserData = async (
     const userData = await getUserData(id);
     res.json(userData);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -55,11 +55,11 @@ export const updateUser = async (
   try {
     const { _id, username, email, mobile } = req.body;
     const image = req.file?.filename;
-    console.log("image from admincontroller-",image)
+    // console.log("image from admincontroller-",image)
     const response = await updateUserData(_id, username, email, mobile, image);
     res.json(response);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -72,6 +72,6 @@ export const deleteUser = async (
     const response = await deleteUserData(id);
     res.json(response);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };

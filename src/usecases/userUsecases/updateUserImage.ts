@@ -9,7 +9,7 @@ const updateUserImage = async (_id: string, image: any) => {
       return { message: "Profile image updated failed", status: "FAILED" };
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return { message: "Something went wrong", status: "FAILED" };
   }
 };

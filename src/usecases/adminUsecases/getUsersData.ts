@@ -13,7 +13,7 @@ import {qUsersData} from '../../repositories/adminRepository'
        
     }
     catch(err){
-        console.log(err);
+        console.error(err);
     }
 }
 

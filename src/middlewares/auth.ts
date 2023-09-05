@@ -15,7 +15,7 @@ export const generateUserToken = (existingUser: UserType): string | null => {
     const token = Jwt.sign({ _id, username, email, mobile }, jwtSecretKey);
     return token;
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return null;
   }
 };
@@ -31,7 +31,7 @@ export const generateAdminToken = (adminData: AdminType): string | null => {
     const token = Jwt.sign({ email }, jwtSecretKey);
     return token;
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return null;
   }
 };
@@ -61,7 +61,7 @@ export const verifyToken = async (
 
     next();
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(401).json({ status: "Authentication Failure", message: "Invalid token" });
   }
 };
