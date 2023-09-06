@@ -36,7 +36,7 @@ export const getProfile = async (
 ): Promise<void> => {
   try {
     const _id = req.query._id as string;
-    if (_id) {
+    if (_id) {console.log
       const userData = await getuserData(_id);
       if (userData) {
         res
@@ -65,8 +65,8 @@ export const updateProfile = async (
   try {
     const { _id, username, email, mobile } = req.body;
     // console.log(req.body);
-    const image = req.file?.filename;
-    const response = await updateUserData(_id, username, email, mobile, image);
+    // const image = req.file?.filename;
+    const response = await updateUserData(_id, username, email, mobile);
     res.json(response);
   } catch (err) {
     console.error(err);

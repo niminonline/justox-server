@@ -23,7 +23,7 @@ export const qCreateUser = async (
 };
 
 export const qFindUserById = async (id: string): Promise<UserType | null> => {
-  const userData = await User.findById(id);
+  const userData = await User.findById(id).select('-password').lean();
   return userData;
 };
 
@@ -44,12 +44,12 @@ export const qUpdateUser = async (
   username: string,
   email: string,
   mobile: string,
-  image: any
+  
 ): Promise<UserType | null> => {
   const userData = User.findByIdAndUpdate(
     { _id },
     {
-      $set: { username: username, email: email, mobile: mobile, image: image },
+      $set: { username: username, email: email, mobile: mobile },
     }
   );
   return userData;

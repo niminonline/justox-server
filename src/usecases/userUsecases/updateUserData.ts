@@ -9,18 +9,19 @@ const updateUserData = async (
   username: string,
   email: string,
   mobile: string,
-  image: any
-) => {
+) : Promise<object | undefined> => {
   try{
     const isEmailExists = await qFindUserByEmail(email);
-  if (isEmailExists) {
+   
+  if (isEmailExists&& (isEmailExists._id.toString()!==_id.toString())) {
+    // console.log(isEmailExists._id+"-"+_id)
     return { message: "Email already exists", status: "FAILED" };
   }
   const isMobileExists = await qFindUserByMobile(mobile);
-  if (isMobileExists) {
+  if (isMobileExists&& isMobileExists._id.toString()!==_id.toString()) {
     return { message: "Mobile already exists", status: "FAILED" };
   }
-  const updateUser = await qUpdateUser(_id, username, email, mobile, image);
+  const updateUser = await qUpdateUser(_id, username, email, mobile);
   if (updateUser) {
     return { message: "User updated successfully", status: "OK" };
   } else {

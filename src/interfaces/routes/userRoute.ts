@@ -13,7 +13,7 @@ userRoute.get("/",(req,res)=>{
 userRoute.post('/signup',upload.single('image'), userSignup);
 userRoute.post('/login',userLogin);
 userRoute.get('/profile',verifyToken, getProfile);
-userRoute.patch('/update-profile',verifyToken,upload.single('image'), updateProfile);
+userRoute.patch('/update-profile',verifyToken, updateProfile);
 userRoute.put('/update-image',verifyToken,upload.single('image'), updateImage);
 
 

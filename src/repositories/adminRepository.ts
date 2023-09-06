@@ -7,11 +7,11 @@ export const qAdminData = async (email: string): Promise<AdminType | null> => {
 };
 
 export const qUsersData = async () => {
-  return await User.find({}).lean();
+  return await User.find({}).select('-password').lean();
 };
 export const qUserData = async (id: string): Promise<UserType | null> => {
   const _id = new ObjectId(id);
-  return await User.findById(_id);
+  return await User.findById(_id).select('-password').lean();
 };
 
 export const qFindUserByEmail=async (email:string):Promise<UserType | null>=>{
